@@ -7,35 +7,35 @@
 //
 
 #import "ExampleWKWebViewController.h"
-#import "WebViewJavascriptBridge.h"
+//#import "WebViewJavascriptBridge.h"
 
 @interface ExampleWKWebViewController ()
 
-@property WebViewJavascriptBridge* bridge;
+//@property WebViewJavascriptBridge* bridge;
 
 @end
 
 @implementation ExampleWKWebViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (_bridge) { return; }
+//    if (_bridge) { return; }
     
-    WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:self.view.bounds];
-    webView.navigationDelegate = self;
-    [self.view addSubview:webView];
-    [WebViewJavascriptBridge enableLogging];
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
-    [_bridge setWebViewDelegate:self];
+//    WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:self.view.bounds];
+//    webView.navigationDelegate = self;
+//    [self.view addSubview:webView];
+//    [WebViewJavascriptBridge enableLogging];
+//    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+//    [_bridge setWebViewDelegate:self];
+//
+//    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"testObjcCallback called: %@", data);
+//        responseCallback(@"Response from testObjcCallback");
+//    }];
+//
+//    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     
-    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"testObjcCallback called: %@", data);
-        responseCallback(@"Response from testObjcCallback");
-    }];
-    
-    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
-    
-    [self renderButtons:webView];
-    [self loadExamplePage:webView];
+//    [self renderButtons:webView];
+//    [self loadExamplePage:webView];
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -66,9 +66,9 @@
 
 - (void)callHandler:(id)sender {
     id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
-    }];
+//    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
+//        NSLog(@"testJavascriptHandler responded: %@", response);
+//    }];
 }
 
 - (void)loadExamplePage:(WKWebView*)webView {
